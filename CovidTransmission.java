@@ -10,8 +10,8 @@ import java.util.Scanner;
  * (startDay startHour startMin endDay endHour endMin).
  */
 public class CovidTransmission {
-    
-    // Magic numbers
+
+    // Constants replace magic numbers.
     private static final int MAX_DAY = 31;
     private static final int MAX_HOUR = 23;
     private static final int MAX_MIN = 59;
@@ -45,6 +45,7 @@ public class CovidTransmission {
         String d2Input = scnr.next();
         String h2Input = scnr.next();
         String m2Input = scnr.next();
+        scnr.close();
 
         int d1 = Integer.parseInt(d1Input);
         int h1 = Integer.parseInt(h1Input);
@@ -104,6 +105,5 @@ public class CovidTransmission {
         }
 
         System.out.println(numMinutes + " " + riskLevel);
-        scnr.close();
     }
 }
