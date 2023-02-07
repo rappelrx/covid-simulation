@@ -1,5 +1,12 @@
 /** 
  * Copyright (c) 2023 @rappelrx on GitHub
+ *
+ * This program determines total time of contact based on terminal input,
+ * and determines the risk level of contracting Covid.
+ * 
+ * Disclaimer:
+ * The information used in this program is not fact-checked.
+ * Please refer to CDC [cdc.gov] for facts about Covid.
  */
 
 #include <iostream> 
@@ -7,37 +14,28 @@
 #include <string>
 using namespace std;
 
-/**
- * This class determines total time of contact based on terminal input,
- * and determines the risk level of contracting Covid.
- * 
- * Disclaimer:
- * The information used in this program is not fact-checked.
- * Please refer to CDC [cdc.gov] for facts about Covid.
+/** 
+ * This struct contains the constant variables that represent
+ * the various risk levels of contracting Covid, ranging from
+ * "low" to "extremely high."
  */
-class CovidTransmission {
-    public:
-        static const string EMPTY_STRING;
-        static const string LOW_RISK;
-        static const string MED_RISK;
-        static const string HIGH_RISK;
-        static const string EXT_HIGH_RISK;
+struct CovidTransmission {
+    const string EMPTY_STRING = "";
+    const string LOW_RISK = "low";
+    const string MED_RISK = "medium";
+    const string HIGH_RISK = "high";
+    const string EXT_HIGH_RISK = "extremely high";
 };
 
-// Constants replace magic numbers
-const int g_max_day = 31;
-const int g_max_hour = 23;
-const int g_max_min = 59;
-const int g_mins_in_day = 1440;
-const int g_sec_in_min = 60;
-const int g_hrs_in_day = 24;
-const int g_three_hours = 180;
-const int g_six_hours = 360;
-const string CovidTransmission::EMPTY_STRING = "";
-const string CovidTransmission::LOW_RISK = "low";
-const string CovidTransmission::MED_RISK = "medium";
-const string CovidTransmission::HIGH_RISK = "high";
-const string CovidTransmission::EXT_HIGH_RISK = "extremely high";
+// Global constants replace magic numbers
+const unsigned int g_max_day = 31;
+const unsigned int g_max_hour = 23;
+const unsigned int g_max_min = 59;
+const unsigned int g_mins_in_day = 1440;
+const unsigned int g_sec_in_min = 60;
+const unsigned int g_hrs_in_day = 24;
+const unsigned int g_three_hours = 180;
+const unsigned int g_six_hours = 360;
 
 /**
  * Helper method for checking validity of input for day.
@@ -96,7 +94,9 @@ int main() {
         return 1;
     }
 
-    string riskLevel = CovidTransmission::EMPTY_STRING; // initialize
+    // Define struct to access variables for risk levels.
+    struct CovidTransmission covidRisks;
+    string riskLevel = covidRisks.EMPTY_STRING;
 
     // Determine number of minutes of contact.
     int numMinutes = (d2 - d1) * g_mins_in_day;
@@ -115,13 +115,13 @@ int main() {
 
     // Determine risk level of contracting Covid.
     if (numMinutes >= 0 && numMinutes <= g_sec_in_min) {
-        riskLevel = CovidTransmission::LOW_RISK;
+        riskLevel = covidRisks.LOW_RISK;
     } else if (numMinutes > g_sec_in_min && numMinutes <= g_three_hours) {
-        riskLevel = CovidTransmission::MED_RISK;
+        riskLevel = covidRisks.MED_RISK;
     } else if (numMinutes > g_three_hours && numMinutes <= g_six_hours) {
-        riskLevel = CovidTransmission::HIGH_RISK;
+        riskLevel = covidRisks.HIGH_RISK;
     } else if (numMinutes > g_six_hours) {
-        riskLevel = CovidTransmission::EXT_HIGH_RISK;
+        riskLevel = covidRisks.EXT_HIGH_RISK;
     }
 
     // Invalid number of minutes.
