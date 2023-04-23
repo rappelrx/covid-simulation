@@ -10,6 +10,12 @@
 #include <list>
 using namespace std;
 
+/**
+ * Helper method to determine if PDA accepts or rejects the input.
+ * 
+ * @param input The string input in question
+ * @return 0 if PDA accepts input, or 1 if PDA rejects input
+ */
 int compute(string input) {
     list<char> stack;
     bool visitedMidState = false; // Set to true when first '1' (if any) from input is read.
