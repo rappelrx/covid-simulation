@@ -1,0 +1,6 @@
+# Ignore binary executable files
+./CovidGenomeAnalysis
+./CovidMutation
+./CovidTransmission
+./Theoretical-CS/PushdownAutomaton
+./Theoretical-CS/RegularExpression

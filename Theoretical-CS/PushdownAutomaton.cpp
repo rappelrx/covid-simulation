@@ -1,17 +1,13 @@
-/******************************************************************************
-
-Author: Rappel Ricafort, May 2022
-C++ Compiler: onlinegdb.com/online_c++_compiler
-
-This program functions like a Pushdown Automaton (PDA) that recognizes
-the nonregular but context-free language {0^n 1^m 0^n : n, m >= 0}.
-
-*******************************************************************************/
+/**
+ * Copyright (c) 2022 @rappelrx on GitHub
+ * 
+ * This program functions like a Pushdown Automaton (PDA) that recognizes 
+ * the nonregular but context-free language {0^n 1^m 0^n : n, m >= 0}.
+ */
 
 #include <iostream>
 #include <string>
 #include <list>
-
 using namespace std;
 
 int compute(string input) {
@@ -27,7 +23,7 @@ int compute(string input) {
             else if (c == '1')
                 visitedMidState = true;
         }
-        else if (visitedMidState = true) {
+        else if (visitedMidState == true) {
             if (c == '0') {
                 if (stack.front() == '0')
                     stack.pop_front(); // Pop 0 for each 0 that was read before the 1's in input.
@@ -51,7 +47,9 @@ int compute(string input) {
 }
 
 int main() {
-    int acceptance = compute(""); // INSERT INPUT HERE
+    string input;
+    cin >> input;
+    int acceptance = compute(input); 
     if (acceptance == 0) {
         cout << "The PDA accepts this input." << endl;
         return 0;
