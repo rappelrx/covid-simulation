@@ -2,10 +2,9 @@
  * Copyright (c) 2020 @rappelrx on GitHub
  */
 
-import java.io.IOException; // for throwing IOException
-import java.util.Scanner; // to scan input file
-import java.io.File; // to allow File object
-import java.util.Arrays; // for converting arrays to Strings
+import java.io.IOException; 
+import java.util.Scanner; 
+import java.io.File; 
 
 /**
  * This class uses arrays to keep track of students' names,
@@ -15,28 +14,7 @@ import java.util.Arrays; // for converting arrays to Strings
  * the help of for-loops.
  */
 public class InfectionTracking {
-    private static final String EMPTY_STRING = ""; // initialize String
-    private static final int TEST_FOUR = 4; // for testing purposes
-
-    /**
-     * This main method is for testing purposes only.
-     * 
-     * @param args not used
-     * @return void
-     */
-    public static void main(String[] args) throws IOException {
-        String[] names = new String[TEST_FOUR];
-        int[] locations = new int[TEST_FOUR];
-        int[] movements = new int[TEST_FOUR];
-        int[] infections = new int[TEST_FOUR];
-        int s = populateArrays("Students.csv",
-                names, locations, movements, infections);
-        System.out.println(Arrays.toString(names));
-        System.out.println(Arrays.toString(locations));
-        System.out.println(Arrays.toString(movements));
-        System.out.println(Arrays.toString(infections));
-        System.out.println(s);
-    }
+    private static final String EMPTY_STRING = ""; 
 
     /**
      * Populates arrays for names, locations, movements, and
