@@ -3,8 +3,10 @@
  */
 
 import java.io.IOException; 
-import java.util.Scanner; 
 import java.io.File; 
+import java.util.Scanner; 
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class uses arrays to keep track of students' names,
@@ -124,11 +126,11 @@ public class InfectionTracking {
         } else if (infections.length != locations.length) {
             return null; // the arrays are not same length
         }
-        for (int h = 0; h < infections.length; h++) {
-            if (locations[h] < 0 || locations[h] >= worldSize) {
+        for (int i = 0; i < infections.length; i++) {
+            if (locations[i] < 0 || locations[i] >= worldSize) {
                 return null; // out-of-bounds elements in location
             }
-            if (infections[h] != 0 && infections[h] != 1) {
+            if (infections[i] != 0 && infections[i] != 1) {
                 return null; // invalid infection status number
             }
         }
@@ -153,13 +155,30 @@ public class InfectionTracking {
         }
 
         // separate loop to update infections status array
-        for (int k = 0; k < infections.length; k++) {
-            if (infections[k] == 0) {
+        /* for (int i = 0; i < infections.length; i++) {
+            if (infections[i] == 0) {
                 // check to see if share same location with infected
                 for (int l = 0; l < infections.length; l++) {
-                    if (infections[l] == 1 && locations[l] == locations[k]) {
-                        infections[k] = 1; // now infected
+                    if (infections[l] == 1 && locations[l] == locations[i]) {
+                        infections[i] = 1; // now infected
                     }
+                }
+            }
+        } O(n^2) TOO SLOW! See below for optimized algorithm. */
+
+        // OPTIMIZATION: Use HashMap. Reduces to O(n) time complexity!
+        Map<Integer, Boolean> exposureMap = new HashMap<Integer, Boolean>();
+        for (int i = 0; i < infections.length; i++) {
+            if (infections[i] == 1) {
+                // populate this HashMap (the values here don't really matter)
+                exposureMap.put(locations[i], true); 
+            }
+        }
+        for (int i = 0; i < infections.length; i++) {
+            if (infections[i] == 0) {
+                // O(1) time to check if the HashMap contains this location!
+                if (exposureMap.containsKey(locations[i])) {
+                    infections[i] = 1; // now infected
                 }
             }
         }
@@ -193,11 +212,11 @@ public class InfectionTracking {
                 || locations.length != infections.length) {
             return null; // the arrays are not same length
         }
-        for (int h = 0; h < locations.length; h++) {
-            if (locations[h] < 0 || locations[h] >= worldSize) {
+        for (int i = 0; i < locations.length; i++) {
+            if (locations[i] < 0 || locations[i] >= worldSize) {
                 return null; // location element out-of-bounds
             }
-            if (infections[h] != 0 && infections[h] != 1) {
+            if (infections[i] != 0 && infections[i] != 1) {
                 return null; // invalid infection status number
             }
         }

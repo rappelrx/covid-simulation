@@ -2,11 +2,20 @@
 
 Object-oriented programming applications for COVID-19.
 
-#### Technical Skills Used
+### Purpose of Project
 
-Java, JUnit, C++
+I started this project in Fall 2020 during the COVID-19 pandemic. Back then, 
+I was a novice at programming; I was only knowledgable in Java at the time.
+Fast forward to 2023, I decided to revisit this project to do the following:
+- [x] Add JUnit tests to ensure the overall functionality of `InfectionTracking.java`
+- [x] Convert code from Java to C++ for certain files
+- [x] Improve styling for code readability
+- [x] Just for fun: experiment with C++ regex library
+- [x] Just for fun: add C++ implementation of a Pushdown Automaton
 
-#### For this project, I practiced writing clean code:
+**Technical Skills Used**: Java, JUnit, C++
+
+### For this project, I practiced writing clean code:
 
 - meaningful commenting/documentation
 - consistent indentation
