@@ -1,2 +1,5 @@
 # Ignore binary executable files
 bin/
+
+# Ignore JAR files
+lib/

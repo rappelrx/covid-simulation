@@ -55,13 +55,13 @@ public class InfectionTracking {
             }
             movements[count] = scnr.nextInt();
             infections[count] = scnr.nextInt();
-            scnr.close();
             if (infections[count] != 0 && infections[count] != 1) {
+                scnr.close();
                 return -1; // input has invalid number for infection
             }
             count++;
         }
-
+        scnr.close();
         return maxLocationVal;
     }
 
